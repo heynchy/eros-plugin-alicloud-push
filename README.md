@@ -1,6 +1,6 @@
 # eros-plugin-alicloud-push
-##### 基于Eros框架下的--阿里云移动推送--Android端的集成
-      可以将接受到的消息或通知内容传递至JS端以便后续的处理
+ 基于Eros框架下的阿里云移动推送Android端的集成
+   功能：可以将接受到的消息或通知内容传递至JS端以便后续的处理
 ## Usage
 ### 1. Add dependency
 ```groovy
