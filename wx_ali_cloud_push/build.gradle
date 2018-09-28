@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.aliyun.ams:alicloud-android-push:3.1.2'
     implementation 'com.aliyun.ams:alicloud-android-third-push:3.0.3@aar'
     // weex环境引入
-    implementation 'com.github.bmfe:WeexErosFramework:1.0.4'
+    compileOnly 'com.github.bmfe:WeexErosFramework:1.0.4'
     // Gson 包的引入
     implementation 'com.google.code.gson:gson:2.8.5'
 }
