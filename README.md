@@ -1,1 +1,64 @@
 # eros-plugin-alicloud-push
+基于Eros框架下的--阿里云移动推送--Android端的集成
+   可以将接受到的消息或通知内容传递至JS端以便后续的处理
+## Usage
+### 1. Add dependency
+```groovy
+	dependencies {
+	       implementation 'com.github.heynchy:eros-plugin-alicloud-push:0.0.3'
+	}
+```
+### 2. 在Application中初始化移动推送（可参考demo中的位置）
+```java
+       /**
+         * 初始化推送信息（必须设置）
+         * appKey : 该应用在阿里云上的注册参数
+         * appSecret： 该应用在阿里云上的注册参数
+         * 将生成好的appKey 和 appSecret填入对应的位置
+         */
+        AliPushManger.initCloudChannel(this, "appKey", "*appSecret");
+        
+        /**
+         *  设置是否向JS端推送消息（非必须）
+         *
+         *  默认为true--JS端能接受到任何消息通知
+         *  设置为false--JS端不能接受到任何消息通知
+         */
+        AliPushManger.setIsSend(true);
+        
+       /**
+         * 设置制定的消息类型推送至JS端（非必须）
+         *
+         *  PUSH_NOTIFICATION         通知的推送
+         *  PUSH_MESSAGE              消息的推送
+         *  PUSH_NOTIFICATION_OPEN    打开通知
+         *  PUSH_NOTIFICATION_REMOVE  移除通知
+         *  PUSH_NO_ACTION_OPEN       打开无跳转通知的回调
+         *
+         *  设置效果： 只将设置的消息类型传给JS端，其他的消息不会传给JS端
+         */
+        AliPushManger.setSendAction(PUSH_NOTIFICATION);
+```
+##### 注意：初始化必须在Application中进行，否则会报错
+
+## Eros框架下的接收消息的位置 js/config/push.js文件中：
+```java
+  /**
+   * 消息推送
+   * options 客户端的所有消息
+   */
+globalEvent.addEventListener('pushMessage', function (options) {
+    /** 
+     *  options 包含内容主要包括  
+     *        String title                  // 标题(消息，通知都有)
+     *        String summary                // 简介（消息的内容，通知的简介）
+     *        String extraStr               // 其他参数
+     *        Map<String, String> extraMap  // 其他参数
+     *        int action                    // 推送的操作(类型)
+     *        String messageId              // 消息/通知的ID
+     */
+})
+```
+
+
+
