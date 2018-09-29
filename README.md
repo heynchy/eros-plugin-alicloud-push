@@ -42,6 +42,29 @@
 ```
 ##### 注意：初始化必须在Application中进行，否则会报错
 
+## 其他方法说明
+    1. 设置通知栏图标
+ ```java
+    /**
+     * 设置通知栏图标
+     * 设置推送通知栏图标资源Bitmap
+     * 若不调用本接口，默认获取id为R.drawable.alicloud_notification_largeIcon的资源文件
+     * 若没有获取到指定图标文件，取App启动图标
+     */
+    AliPushManger.setNotificationIcon(Bitmap icon);
+ ```
+    2. 设置状态栏的图标
+ ```java
+    /**
+     * 设置状态栏图标
+     * 设置推送状态栏图标资源Id
+     * 若不调用本接口，默认获取id为R.drawable.alicloud_notification_smallIcon的资源文件
+     * 若没有获取到指定资源文件Id，取App启动图标
+     *
+     */
+    AliPushManger.setNotificationStateIcon(int drawableId) ;
+ ```
+
 ## Eros框架下的接收消息的位置 js/config/push.js文件中：
 ```java
   /**
