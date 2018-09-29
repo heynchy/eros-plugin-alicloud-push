@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
@@ -82,7 +83,7 @@ public class AliPushManger {
     private static void createNotificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager mNotificationManager = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
+                    context.getSystemService(Context.NOTIFICATION_SERVICE);
             // 通知渠道的id
             String id = "alipush_1";
             // 用户可以看到的通知渠道的名字.
@@ -120,7 +121,33 @@ public class AliPushManger {
             String json = param.toJsonString(message);
             eventBean.param = json;
             ManagerFactory.getManagerService(DispatchEventManager.class).getBus().post
-                (eventBean);
+                    (eventBean);
         }
+    }
+
+    /**
+     * 设置通知栏图标
+     * 设 置推送通知栏图标资源Bitmap。
+     * 若不调用本接口，默认获取id为R.drawable.alicloud_notification_largeIcon的资源文件；
+     * 若没有获取到指定图标文件，取App启动图标。
+     *
+     * @param icon
+     */
+    public static void setNotificationIcon(Bitmap icon) {
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.setNotificationLargeIcon(icon);
+    }
+
+    /**
+     * 设置状态栏图标
+     * 设置推送状态栏图标资源Id；
+     * 若不调用本接口，默认获取id为R.drawable.alicloud_notification_smallIcon的资源文件；
+     * 若没有获取到指定资源文件Id，取App启动图标。
+     *
+     * @param drawableId
+     */
+    public static void setNotificationStateIcon(int drawableId) {
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.setNotificationSmallIcon(drawableId);
     }
 }
