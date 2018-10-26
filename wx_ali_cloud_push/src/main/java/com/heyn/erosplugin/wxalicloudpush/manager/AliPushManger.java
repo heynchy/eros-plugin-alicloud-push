@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
@@ -19,11 +18,11 @@ import com.benmu.framework.manager.ManagerFactory;
 import com.benmu.framework.manager.impl.ParseManager;
 import com.benmu.framework.manager.impl.dispatcher.DispatchEventManager;
 import com.benmu.framework.model.BaseEventBean;
-import com.heyn.erosplugin.wxalicloudpush.App;
 import com.heyn.erosplugin.wxalicloudpush.event.AliPushMessage;
+import com.heyn.erosplugin.wxalicloudpush.util.Constant;
 
 /**
- * Author: 崔海营
+ * Author: heynchy
  * Date:   2018/9/28
  * <p>
  * Introduce:
@@ -64,12 +63,12 @@ public class AliPushManger {
         pushService.register(context, appKey, appSecret, new CommonCallback() {
             @Override
             public void onSuccess(String s) {
-                Log.i(App.TAG, "onSuccess: " + s);
+                Log.i(Constant.TAG, "onSuccess: " + s);
             }
 
             @Override
             public void onFailed(String s, String s1) {
-                Log.i(App.TAG, "onFailed: " + s);
+                Log.i(Constant.TAG, "onFailed: " + s);
             }
         });
         createNotificationChannel(context);

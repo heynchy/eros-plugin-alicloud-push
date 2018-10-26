@@ -8,6 +8,7 @@ import com.alibaba.sdk.android.push.notification.CPushMessage;
 import com.google.gson.Gson;
 import com.heyn.erosplugin.wxalicloudpush.event.AliPushMessage;
 import com.heyn.erosplugin.wxalicloudpush.manager.AliPushManger;
+import com.heyn.erosplugin.wxalicloudpush.util.Constant;
 
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import static com.heyn.erosplugin.wxalicloudpush.util.Constant.PUSH_NO_ACTION_OP
 
 
 /**
- * Author: 崔海营
+ * Author: heynchy
  * Date:   2018/9/26
  * <p>
  * Introduce:
@@ -36,13 +37,13 @@ public class AliPushReceiver extends MessageReceiver {
                 .setExtraMap(extraMap)
                 .create();
         AliPushManger.sendMsgToJs(message, PUSH_NOTIFICATION);
-        Log.i(App.TAG, "onNotification: " + new Gson().toJson(message));
+        Log.i(Constant.TAG, "onNotification: " + new Gson().toJson(message));
 
     }
 
     @Override
     public void onMessage(Context context, CPushMessage cPushMessage) {
-        Log.i(App.TAG, "onMessage: " + cPushMessage.getContent());
+        Log.i(Constant.TAG, "onMessage: " + cPushMessage.getContent());
         // TODO 处理推送的消息
         AliPushMessage message = new AliPushMessage.Bulider()
                 .setAction(PUSH_MESSAGE)
@@ -55,7 +56,7 @@ public class AliPushReceiver extends MessageReceiver {
 
     @Override
     public void onNotificationOpened(Context context, String title, String summary, String extraMap) {
-        Log.i(App.TAG, "onNotificationOpened");
+        Log.i(Constant.TAG, "onNotificationOpened");
         // TODO 点击打开通知后的回调
         AliPushMessage message = new AliPushMessage.Bulider()
                 .setAction(PUSH_NOTIFICATION_OPEN)
@@ -68,7 +69,7 @@ public class AliPushReceiver extends MessageReceiver {
 
     @Override
     protected void onNotificationClickedWithNoAction(Context context, String title, String summary, String extraMap) {
-        Log.i(App.TAG, "onNotificationClickedWithNoAction");
+        Log.i(Constant.TAG, "onNotificationClickedWithNoAction");
         // TODO 打开通知后无其他操作的回调(无跳转的通知类型)
         AliPushMessage message = new AliPushMessage.Bulider()
                 .setAction(PUSH_NO_ACTION_OPEN)
@@ -81,7 +82,7 @@ public class AliPushReceiver extends MessageReceiver {
 
     @Override
     protected void onNotificationReceivedInApp(Context context, String title, String summary, Map<String, String> extraMap, int openType, String openActivity, String openUrl) {
-        Log.i(App.TAG, "onNotificationReceivedInApp");
+        Log.i(Constant.TAG, "onNotificationReceivedInApp");
         // TODO 当用户创建自定义通知样式，并且设置推送应用内到达不创建通知弹窗时调用该回调，且此时不调用onNotification回调
     }
 
@@ -92,6 +93,6 @@ public class AliPushReceiver extends MessageReceiver {
                 .setMessageId(messageId)
                 .create();
         AliPushManger.sendMsgToJs(message, PUSH_NOTIFICATION_REMOVE);
-        Log.i(App.TAG, "onNotificationRemoved");
+        Log.i(Constant.TAG, "onNotificationRemoved");
     }
 }
