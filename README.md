@@ -1,5 +1,9 @@
 # eros-plugin-alicloud-push
-##### 基于Eros框架下的阿里云移动推送Android端的集成------支持wxframework版本<= 1.0.9版本
+
+#### 支持wxframework版本 <= 1.0.9版本
+#### 如果您的wxframework版本 >1.0.9, 可前往：[eros-plugin-alicloud-push2](https://github.com/heynchy/eros-plugin-alicloud-push2)
+
+#### 基于Eros框架下的阿里云移动推送Android端的集成
        1. 可以将接受到的消息或通知内容传递至JS端以便后续的处理
        2. 可以指定某一消息的内容传递给JS端，其他的接收的消息不会传递
 ## Usage
