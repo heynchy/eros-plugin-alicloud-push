@@ -58,12 +58,12 @@ public class AliPushManger {
      */
     public static void initCloudChannel(final Context context, String appKey, String appSecret) {
 
-        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
         PushServiceFactory.init(context);
         pushService.register(context, appKey, appSecret, new CommonCallback() {
             @Override
             public void onSuccess(String s) {
-                Log.i(Constant.TAG, "onSuccess: " + s);
+                Log.i(Constant.TAG, "onSuccess: " + pushService.getDeviceId());
             }
 
             @Override
