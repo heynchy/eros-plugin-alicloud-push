@@ -31,6 +31,7 @@ public class AliPushManger {
 
     public static boolean IS_SEND = true; // 是否全部推送
     public static int PUSH_ACTION = -1;   // 推送的类型
+    public static CloudPushService pushService;
 
     /**
      * 设置发送消息的类型(通知,消息等),默认全部发送
@@ -58,7 +59,7 @@ public class AliPushManger {
      */
     public static void initCloudChannel(final Context context, String appKey, String appSecret) {
 
-        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService = getPushService();
         PushServiceFactory.init(context);
         pushService.register(context, appKey, appSecret, new CommonCallback() {
             @Override
@@ -148,5 +149,14 @@ public class AliPushManger {
     public static void setNotificationStateIcon(int drawableId) {
         CloudPushService pushService = PushServiceFactory.getCloudPushService();
         pushService.setNotificationSmallIcon(drawableId);
+    }
+
+    public static CloudPushService getPushService() {
+        if (pushService != null){
+            return pushService;
+        } else {
+           return PushServiceFactory.getCloudPushService();
+        }
+
     }
 }
