@@ -27,7 +27,7 @@ import com.taobao.weex.common.WXModule;
 public class AliPushModule extends WXModule {
 
     /**
-     * 强制退出APP（KILL PROGRESS）
+     * 移动推送，绑定账号
      */
     @JSMethod(uiThread = true)
     public void bindAccount(String params, final JSCallback susscess, final JSCallback failure) {
@@ -51,5 +51,21 @@ public class AliPushModule extends WXModule {
         });
     }
 
+    /**
+     * 移动推送解绑账号
+     */
+    @JSMethod(uiThread = true)
+    public void unbindAccount(){
+        AliPushManger.getPushService().unbindAccount(new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                Log.i("Ali_PUSH","移动推送解绑成功");
+            }
 
+            @Override
+            public void onFailed(String s, String s1) {
+                Log.i("Ali_PUSH","移动推送解绑失败");
+            }
+        });
+    }
 }
